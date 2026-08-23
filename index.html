@@ -7,9 +7,58 @@
     <style>html, body { overflow-x: hidden; }</style>
     <link rel="preload" as="image" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTznesVzl8X48HchEiht7ukNimrzf_GBgTKFKmHmzffhpbDqb7zftPVJx9VKdF1vwr-AI-2P3tfH5Sbr7RC2PJ3TQ" />
     <link rel="icon" type="image/png" href="/Images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '929404720002712');
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent', {
+            content_name: 'Herbal Piles Spray',
+            value: 1900,
+            currency: 'NPR'
+        });
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=929404720002712&ev=PageView&noscript=1"/>
+    </noscript>
 </head>
 
 <body>
+<style>
+    :root{
+        --c-forest:#1a4a2e;
+        --c-forest-mid:#2d6a46;
+        --c-forest-light:#4a9465;
+        --c-cream:#faf8f4;
+        --c-cream-dark:#f0ece4;
+        --c-gold:#b8975a;
+        --c-gold-light:#e8d5aa;
+        --c-text:#1c1c1c;
+        --c-muted:#5a5a5a;
+        --c-border:#e2ddd4;
+        --c-cta:#d4550a;
+        --c-cta-dark:#b84508;
+        --c-white:#ffffff;
+        --ff-head:'Playfair Display','Noto Serif Devanagari',Georgia,serif;
+        --ff-body:'DM Sans','Noto Sans Devanagari',system-ui,sans-serif;
+        --radius:16px;
+        --shadow-sm:0 2px 12px rgba(26,74,46,.08);
+        --shadow-md:0 8px 32px rgba(26,74,46,.12);
+        --shadow-lg:0 20px 60px rgba(26,74,46,.16);
+        --ease:cubic-bezier(.4,0,.2,1);
+    }
+</style>
 <style>
     html, body { margin: 0 !important; padding: 0 !important; overflow-x: hidden; }
     :root {
@@ -63,10 +112,84 @@
     <img src="Images/whatsapp.png" alt="WhatsApp Chat" />
 </a>
 <style>
-    .whatsapp-float-img { position: fixed; bottom: 0px; right: 20px; z-index: 9999; }
+    .whatsapp-float-img { position: fixed; bottom: 0px; right: 20px; z-index: 9999; transition: transform 0.25s ease, bottom .4s cubic-bezier(.4,0,.2,1); }
     .whatsapp-float-img img { width: 60px; height: auto; cursor: pointer; transition: transform 0.25s ease; }
     .whatsapp-float-img img:hover { transform: scale(1.08); }
+    body.sticky-visible .whatsapp-float-img { bottom: 88px; }
+    @media (max-width: 600px) { body.sticky-visible .whatsapp-float-img { bottom: 82px; } }
 </style>
+
+<!-- ==================== STICKY CTA BAR ==================== -->
+<div id="stickyCta" aria-label="Quick Order">
+    <div class="sticky-cta__info">
+        <span class="sticky-cta__label">Herbal Piles Spray</span>
+        <div class="sticky-cta__price">
+            <span class="sticky-cta__price-old">Rs 2,500</span>
+            <span class="sticky-cta__price-main">Rs 1,900</span>
+        </div>
+    </div>
+    <button class="sticky-cta__btn open-order-modal" aria-label="Order Now">
+        🌿  Order Now — Rs 1,900  <span style="font-size:16px;">→</span>
+    </button>
+</div>
+<style>
+    #stickyCta{
+        position:fixed;bottom:0;left:0;right:0;z-index:9990;
+        background:var(--c-white);border-top:1px solid var(--c-border);
+        box-shadow:0 -8px 32px rgba(26,74,46,.14);
+        padding:12px 20px;
+        display:flex;align-items:center;justify-content:space-between;gap:12px;
+        transform:translateY(100%);transition:transform .4s var(--ease);will-change:transform;
+        font-family:var(--ff-body);
+    }
+    #stickyCta.visible{transform:translateY(0);}
+    .sticky-cta__info{display:flex;flex-direction:column;gap:2px;flex-shrink:0;}
+    .sticky-cta__label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c-muted);}
+    .sticky-cta__price{display:flex;align-items:baseline;gap:7px;}
+    .sticky-cta__price-old{font-size:13px;text-decoration:line-through;color:#aaa;font-weight:500;}
+    .sticky-cta__price-main{font-family:var(--ff-head);font-size:22px;font-weight:800;color:var(--c-forest);line-height:1;}
+    .sticky-cta__btn{
+        flex:1;max-width:340px;padding:14px 20px;border-radius:999px;border:none;
+        background:linear-gradient(135deg,var(--c-cta),var(--c-cta-dark));
+        color:#fff;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+        box-shadow:0 8px 24px rgba(212,85,10,.35);position:relative;overflow:hidden;
+        transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+        display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;
+    }
+    .sticky-cta__btn::after{
+        content:'';position:absolute;inset:0;
+        background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.3) 50%,transparent 70%);
+        transform:translateX(-100%);animation:stickyShine 3.5s ease-in-out infinite;
+    }
+    @keyframes stickyShine{to{transform:translateX(100%);}}
+    .sticky-cta__btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(212,85,10,.45);}
+    .sticky-cta__btn:active{transform:translateY(0);}
+    @media(max-width:600px){
+        #stickyCta{padding:10px 14px;gap:10px;}
+        .sticky-cta__label{font-size:10px;}
+        .sticky-cta__price-main{font-size:19px;}
+        .sticky-cta__price-old{font-size:12px;}
+        .sticky-cta__btn{font-size:12px;padding:12px 14px;max-width:none;}
+    }
+    @media(max-width:380px){.sticky-cta__info{display:none;}.sticky-cta__btn{max-width:100%;}}
+</style>
+<script>
+    (function(){
+        var stickyCta=document.getElementById('stickyCta');
+        var hero=document.getElementById('epsHeroPro');
+        if(!stickyCta||!hero)return;
+        function updateSticky(){
+            var b=hero.getBoundingClientRect().bottom;
+            if(b<=0){stickyCta.classList.add('visible');document.body.classList.add('sticky-visible');}
+            else{stickyCta.classList.remove('visible');document.body.classList.remove('sticky-visible');}
+        }
+        var ticking=false;
+        window.addEventListener('scroll',function(){
+            if(!ticking){requestAnimationFrame(function(){updateSticky();ticking=false;});ticking=true;}
+        },{passive:true});
+        updateSticky();
+    })();
+</script>
 
 
 <!-- ✅ HERO SECTION -->
@@ -78,19 +201,19 @@
         <div class="eps-hero__right">
             <h1 id="epsHero-title" class="eps-hero__title">HERBAL PILES SPRAY</h1>
             <div class="eps-hero__size-badge">🌿 60ml Bottle</div>
-            <p class="eps-hero__subtitle">
-                प्राकृतिक तरिकाले <span>पाइल्स, फिसर र फिस्टुला</span>बाट पाउनुहोस राहत
+            <p class="eps-hero__subtitle preeti-text">
+                k|fs[lts tl/sfn] <span>kfOn\;, lkm;/ / lkm:6'nf</span>af6 kfpg'xf]; /fxt
             </p>
             <div class="eps-hero__price">
                 <div class="eps-hero__price-old">Rs 2500/-</div>
                 <div class="eps-hero__price-main">Rs 1900/- only</div>
                 <div class="eps-hero__price-save">Save Rs 600/-</div>
             </div>
-            <ul class="eps-hero__list">
-                <li>✅ मलद्वारमा पलाएको मासुलाई सुकाउँछ</li>
-                <li>✅ जलन बाट राहत दिन्छ</li>
-                <li>✅ मलद्वार चिलाउनबाट राहत दिन्छ</li>
-                <li>✅ मलद्वारबाट रगत र पिप बग्नुबाट रोक्छ</li>
+            <ul class="eps-hero__list preeti-text">
+                <li>✅ dnåf/df knfPsf] df;'nfO{ ;'sfpFg d2t u5{ </li>
+                <li>✅ hng sd ug{ d2t u5{ </li>
+                <li>✅ dnåf/ lrnfpg sd ug{ d2t u5{ </li>
+                <li>✅ dnåf/af6 /ut / lkk aUg'af6 /f]Sg d2t u5{ </li>
             </ul>
             <button class="eps-hero-pro__cta open-order-modal">Order Now</button>
         </div>
@@ -160,14 +283,14 @@
 <!-- ✅ SYMPTOMS -->
 <section class="eps-symptoms" aria-labelledby="eps-symptoms-title">
     <div class="eps-symptoms__wrap">
-        <h2 id="eps-symptoms-title" class="eps-symptoms__title">
-            यदि तपाईंमा यस्ता लक्षणहरू बारम्बार देखिन्छन् भने <span>बेवास्ता नगर्नुहोस्</span>
+        <h2 id="eps-symptoms-title" class="eps-symptoms__title preeti-text">
+            olb tkfO{+df o:tf nIf0fx¿ af/Daf/ b]lvG5G eg] <span>a]jf:tf gug{'xf]:</span>
         </h2>
-        <div class="eps-symptoms__grid">
-            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p01.jpg.jpeg" alt="मलद्वार वरिपरि चिलाउने"></div><p class="eps-symptom__text">मलद्वार वरिपरि बारम्बार <br>चिलाउने वा असहज हुने</p></article>
-            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p02.jpg.jpeg" alt="मलद्वारमा दुख्ने वा पोल्ने"></div><p class="eps-symptom__text">दिसा गर्दा वा हिड्दा–बस्दा <br>मलद्वारमा दुखाइ वा पोल्ने</p></article>
-            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p03.jpg.jpeg" alt="रेक्टममा गाठो"></div><p class="eps-symptom__text">मलद्वार / गुदा भित्र <br>गाठो वा सुन्निएको जस्तो महसुस हुनु</p></article>
-            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p04.png" alt="बस्दा दुख्ने वा थिचिएको"></div><p class="eps-symptom__text">लामो समय बस्दा <br>चसक्क दुख्ने, थिचिएको वा जल्ने महसुस हुनु</p></article>
+        <div class="eps-symptoms__grid preeti-text">
+            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p01.jpg.jpeg" alt="1"></div><p class="eps-symptom__text">dnåf/ jl/kl/ af/Daf/ <br>lrnfpg] jf c;xh x'g]</p></article>
+            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p02.jpg.jpeg" alt="2"></div><p class="eps-symptom__text">lb;f ub{f jf lx8\bf–a:bf <br>dnåf/df b'vfO jf kf]n\g]</p></article>
+            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p03.jpg.jpeg" alt="3"></div><p class="eps-symptom__text">dnåf/ / u'bf leq <br>uf7f] jf ;'lGgPsf] h:tf] dx;'; x'g'</p></article>
+            <article class="eps-symptom"><div class="eps-symptom__img"><img src="Images/p04.png" alt="4"></div><p class="eps-symptom__text">nfdf] ;do a:bf <br>r;Ss b'Vg], lylrPsf] jf hn\g] dx;'; x'g'</p></article>
         </div>
     </div>
 </section>
@@ -188,15 +311,15 @@
 
 <!-- ✅ BENEFITS -->
 <section id="eps-benefits" class="eps-scope eps-benefits" aria-labelledby="eps-benefits-title">
-    <div class="eps-benefits__wrap">
-        <h2 id="eps-benefits-title" class="eps-benefits__title"><span class="t-green">Herbal Piles Spray</span> का मुख्य फाइदाहरू</h2>
-        <div class="eps-benefits__grid">
-            <div class="eps-benefit eps-benefit--1"><figure class="eps-benefit__figure"><img src="Images/1s80q9i-4_10ci0ci000000000000028.png" alt="रगत र पिप" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">मलद्वारबाट <span class="hl">रगत र पिप</span> बगनु बाट रोक्छ</p></div>
-            <div class="eps-benefit eps-benefit--2"><figure class="eps-benefit__figure"><img src="Images/h7qnt3-7_10ci0ci000000000000028.png" alt="Piles Lump" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">मलद्वारमा पलाएको <span class="hl">मासु (Piles Lump)</span> बिस्तारै सुकाउन मद्दत गर्छ</p></div>
+    <div class="eps-benefits__wrap ">
+        <h2 id="eps-benefits-title" class="eps-benefits__title"><span class="t-green">Herbal Piles Spray</span><span class="preeti-text"> sf d'Vo kmfObfx¿</span></h2>
+        <div class="eps-benefits__grid preeti-text">
+            <div class="eps-benefit eps-benefit--1"><figure class="eps-benefit__figure"><img src="Images/1s80q9i-4_10ci0ci000000000000028.png" alt="1" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">dnåf/af6 <span class="hl">/ut / lkk</span> aug' af6 /f]S5</p></div>
+            <div class="eps-benefit eps-benefit--2"><figure class="eps-benefit__figure"><img src="Images/h7qnt3-7_10ci0ci000000000000028.png" alt="2" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">dnåf/df knfPsf] <span class="hl">df;' (Piles Lump)</span> la:tf/} ;'sfpg d2t u5{</p></div>
             <div class="eps-benefits__media"><video class="eps-benefits__video" src="Videos/EPS-1.mp4" autoplay muted loop playsinline preload="metadata" poster="http://localhost/EasyPS/wp-content/uploads/2025/11/EPS-poster.jpg"></video></div>
-            <div class="eps-benefit eps-benefit--3"><figure class="eps-benefit__figure"><img src="Videos/p9sip5-6_10ci0ci000000000000028.png" alt="दुखाइ" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">पाइल्सको <span class="hl">दुखाइ र बस्दा वा हिँड्दा हुने असहजता</span> कम गर्छ</p></div>
-            <div class="eps-benefit eps-benefit--4"><figure class="eps-benefit__figure"><img src="Videos/gtdgrc-5_10ci0ci000000000000028.png" alt="जलन" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">मलद्वार <span class="hl">चिलाउने, पोल्ने र जलन</span> हुने बाट राहत दिन तथा छाला निको हुन मद्दत गर्छ</p></div>
-            <h3 class="eps-benefits__subhead-mobile">Herbal Piles Spray को प्रयोग गर्दा पाइल्सलाई छुइराख्न पर्दैन</h3>
+            <div class="eps-benefit eps-benefit--3"><figure class="eps-benefit__figure"><img src="Videos/p9sip5-6_10ci0ci000000000000028.png" alt="3" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">kfOn\;sf] <span class="hl">b'vfO / a:bf jf lxF8\bf x'g] c;xhtf</span> sd u5{</p></div>
+            <div class="eps-benefit eps-benefit--4"><figure class="eps-benefit__figure"><img src="Videos/gtdgrc-5_10ci0ci000000000000028.png" alt="4" loading="lazy" width="160" height="160" /></figure><p class="eps-benefit__caption">dnåf/ <span class="hl">lrnfpg], kf]n\g] / hng</span> x'g] af6 /fxt lbg tyf 5fnf lgsf] x'g d2t u5{</p></div>
+            <h3 class="eps-benefits__subhead-mobile">Herbal Piles Spray sf] k|of]u ub{f kfOn\;nfO{ 5'O/fVg kb{}g</h3>
         </div>
     </div>
 </section>
@@ -228,11 +351,11 @@
 <!-- ✅ CONDITIONS -->
 <section class="eps-conditions">
     <div class="eps-conditions__wrap">
-        <h2 class="eps-conditions__title">सर्व सम्पन्न गुण भएको <span class="highlight">Herbal Piles Spray</span> ले दिन्छ पाइल्स, फिसर र फिस्टुलाबाट छुटकारा !</h2>
-        <div class="eps-conditions__grid">
-            <div class="eps-condition"><img src="Images/piles.png" alt="पाइल्स" loading="lazy" /><h3>पाइल्स <span>(Piles)</span></h3></div>
-            <div class="eps-condition"><img src="Images/fissure.png" alt="फिसर" loading="lazy" /><h3>फिसर <span>(Fissure)</span></h3></div>
-            <div class="eps-condition"><img src="Images/fistula.png" alt="फिस्टुला" loading="lazy" /><h3>फिस्टुला <span>(Fistula)</span></h3></div>
+        <h2 class="eps-conditions__title "><span class="preeti-text">;j{ ;DkGg u'0f ePsf] </span><span class="highlight">Herbal Piles Spray</span><span class="preeti-text"> n] lbG5 kfOn\;, lkm;/ / lkm:6'nfaf6 5'6sf/f !</span></h2>
+        <div class="eps-conditions__grid preeti-text">
+            <div class="eps-condition"><img src="Images/piles.png" alt="1" loading="lazy" /><h3>kfOn\; <span></span></h3></div>
+            <div class="eps-condition"><img src="Images/fissure.png" alt="2" loading="lazy" /><h3>lkm;/ <span></span></h3></div>
+            <div class="eps-condition"><img src="Images/fistula.png" alt="3" loading="lazy" /><h3>lkm:6'nf <span></span></h3></div>
         </div>
     </div>
 </section>
@@ -278,14 +401,14 @@
     <div class="piles-card">
         <div>
             <div class="tag">🌿 Herbal Piles Spray</div>
-            <h2>हर्बल पाइल्स स्प्रे कसरी प्रयोग गर्ने? (३ सजिलो चरण)</h2>
-            <p class="subtitle">छिटो आरामको लागि यी ३ सरल चरणहरू पालना गर्नुहोस्:</p>
+            <h2 class="preeti-text">xa{n kfOn\; :k|] s;/L k|of]u ug{]< # ;lhnf] r/0f</h2>
+            <p class="subtitle preeti-text">l56f] cf/fdsf] nflu oL # ;/n r/0fx¿ kfngf ug{'xf]::</p>
             <div class="steps-box">
-                <div class="steps-title">✅ प्रयोग गर्ने तरिका (3 Steps)</div>
-                <ol class="steps-list">
-                    <li class="step-item"><div class="step-number">1</div><div><div class="step-text-title">प्रभावित भाग सफा गरेर सुखाउनुहोस्</div><p class="step-text-desc">हल्का साबुन र पानीले सफा गरी नरम कपडाले राम्ररी सुखाउनुहोस्।</p></div></li>
-                    <li class="step-item"><div class="step-number">2</div><div><div class="step-text-title">१–२ पटक स्प्रे गर्नुहोस्</div><p class="step-text-desc">बोतललाई केही दूरीमा राखेर प्रभावित स्थानमा १–२ पटक स्प्रे गर्नुहोस्।</p></div></li>
-                    <li class="step-item"><div class="step-number">3</div><div><div class="step-text-title">सुक्न दिनुहोस्</div><p class="step-text-desc">स्प्रे प्राकृतिक रूपमा सुक्न दिनुहोस् अनि मात्र बस्नुहोस् वा कपडा लगाउनुहोस्।</p></div></li>
+                <div class="steps-title preeti-text">✅ k|of]u ug{] tl/sf </div>
+                <ol class="steps-list ">
+                    <li class="step-item"><div class="step-number">1</div><div><div class="step-text-title preeti-text">k|efljt efu ;kmf u/]/ ;'vfpg'xf]:</div><p class="step-text-desc preeti-text">xn\sf ;fa'g / kfgLn] ;kmf u/L g/d sk8fn] /fd|/L ;'vfpg'xf]:.</p></div></li>
+                    <li class="step-item"><div class="step-number">2</div><div><div class="step-text-title preeti-text">!–@ k6s :k|] ug{'xf]:</div><p class="step-text-desc preeti-text">af]tnnfO{ s]xL b"/Ldf /fv]/ k|efljt :yfgdf !–@ k6s :k|] ug{'xf]:.</p></div></li>
+                    <li class="step-item"><div class="step-number">3</div><div><div class="step-text-title preeti-text">;'Sg lbg'xf]:</div><p class="step-text-desc preeti-text">:k|] k|fs[lts ¿kdf ;'Sg lbg'xf]: clg dfq a:g'xf]: jf sk8f nufpg'xf]:.</p></div></li>
                 </ol>
             </div>
         </div>
@@ -299,23 +422,22 @@
     <div class="spray-story__wrap">
         <div class="spray-story__image"><img src="Images/70.png" alt="Herbal Piles Spray प्रयोग गरेपछि सन्तुष्ट ग्राहक"></div>
         <div class="spray-story__content">
-            <p class="spray-story__label">तपाईंको यात्रा</p>
-            <h2 class="spray-story__title">पाइल्सको समस्या देखि<br><span>सहज जीवनतर्फ</span></h2>
-            <p class="spray-story__text">Herbal Piles Spray ले धेरैलाई पीडा, जलन र असहजता कम गर्दै सामान्य जीवनमा फर्किन मद्दत गरेको छ। अब तपाईं पनि राहतका साथ खुसी–खुसी आफ्नो दिन बिताउन सक्नुहुन्छ।</p>
+            <p class="spray-story__label preeti-text">tkfO{+sf] ofqf</p>
+            <h2 class="spray-story__title preeti-text">kfOn\;sf] ;d:of b]lv<br><span>;xh hLjgtkm{</span></h2>
+            <p class="spray-story__text ">Herbal Piles Spray <span class="preeti-text">n] w]/}nfO{ kL8f, hng / c;xhtf sd ub{} ;fdfGo hLjgdf kmls{g d2t u/]sf] 5. ca tkfO{+ klg /fxtsf ;fy v';L–v';L cfkm\gf] lbg latfpg ;Sg'x'G5.</</p>
             <button class="spray-story__cta open-order-modal">Order Now</button>
         </div>
     </div>
 </section>
 <style>
-    :root{--spray-green:#059669;--spray-text-main:#0b2935;--spray-text-muted:#4b5563;--spray-bg-card:#ffffff;--spray-bg-section:#f1fff7;}
-    .spray-story{padding:50px 20px;background:var(--spray-bg-section);font-family:system-ui,sans-serif;}
-    .spray-story__wrap{max-width:1200px;margin:0 auto;background:var(--spray-bg-card);border-radius:24px;box-shadow:0 18px 40px rgba(15,23,42,0.08);display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;}
+    .spray-story{padding:50px 20px;background:#f1fff7;font-family:system-ui,sans-serif;}
+    .spray-story__wrap{max-width:1200px;margin:0 auto;background:#ffffff;border-radius:24px;box-shadow:0 18px 40px rgba(15,23,42,0.08);display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;}
     .spray-story__image img{width:100%;height:380px;object-fit:cover;display:block;}
     .spray-story__content{padding:40px 48px;}
-    .spray-story__label{display:inline-block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--spray-green);font-weight:600;margin-bottom:12px;}
-    .spray-story__title{font-size:32px;line-height:1.3;font-weight:800;color:var(--spray-text-main);margin-bottom:18px;}
-    .spray-story__title span{color:var(--spray-green);}
-    .spray-story__text{font-size:16px;line-height:1.7;color:var(--spray-text-muted);margin-bottom:26px;max-width:460px;}
+    .spray-story__label{display:inline-block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#059669;font-weight:600;margin-bottom:12px;}
+    .spray-story__title{font-size:32px;line-height:1.3;font-weight:800;color:#0b2935;margin-bottom:18px;}
+    .spray-story__title span{color:#059669;}
+    .spray-story__text{font-size:16px;line-height:1.7;color:#4b5563;margin-bottom:26px;max-width:460px;}
     .spray-story__cta{display:inline-flex;text-align:center;justify-content:center;padding:12px 26px;border-radius:999px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;width:500px;font-weight:700;font-size:15px;text-decoration:none;letter-spacing:.03em;box-shadow:0 18px 35px rgba(234,88,12,0.35);transition:transform .15s ease,opacity .15s ease;border:none;cursor:pointer;}
     .spray-story__cta:hover{transform:translateY(-2px);opacity:.97;}
     @media (max-width:900px){.spray-story__wrap{grid-template-columns:1fr;text-align:left;}.spray-story__image img{height:260px;border-bottom:1px solid #e5e7eb;}.spray-story__content{padding:24px 20px 30px;}.spray-story__cta{width:90%;text-align:center;justify-content:center;font-size:16px;padding:14px 18px;}}
@@ -323,44 +445,21 @@
 </style>
 
 
-<!-- ✅ TRUST BADGES -->
-<section class="triple-action">
-    <div class="triple-action__inner">
-        <div class="triple-action__items">
-            <div class="triple-action__item"><div class="triple-action__icon"><img src="https://cdn.shopify.com/s/files/1/0602/2440/5694/files/Dermatologically-tested.jpg?v=1727688938"></div><div class="triple-action__text">Dermatologically Tested</div></div>
-            <div class="triple-action__item"><div class="triple-action__icon"><img src="https://cdn.shopify.com/s/files/1/0602/2440/5694/files/Instant-relief.jpg?v=1727688883"></div><div class="triple-action__text">Instant Relief</div></div>
-            <div class="triple-action__item"><div class="triple-action__icon"><img src="https://cdn.shopify.com/s/files/1/0602/2440/5694/files/No-hurt-formula.jpg?v=1727688883"></div><div class="triple-action__text">No-Hurt Formula</div></div>
-            <div class="triple-action__item"><div class="triple-action__icon"><img src="https://cdn.shopify.com/s/files/1/0602/2440/5694/files/Rapid-cooling.jpg?v=1727688883"></div><div class="triple-action__text">Rapid Cooling</div></div>
-            <div class="triple-action__item"><div class="triple-action__icon"><img src="https://cdn.shopify.com/s/files/1/0602/2440/5694/files/Made-in-GMP-facility.jpg?v=1727688883"></div><div class="triple-action__text">Made in GMP Facility</div></div>
-            <div class="triple-action__item"><div class="triple-action__icon"><img src="https://cdn.shopify.com/s/files/1/0602/2440/5694/files/NABL-lab-tested.jpg?v=1727688883"></div><div class="triple-action__text">NABL Lab Tested</div></div>
-        </div>
-    </div>
-</section>
-<style>
-    :root{--triple-green:#059669;}
-    .triple-action{padding:40px 16px 50px;background:#fff;}
-    .triple-action__inner{max-width:1200px;margin:0 auto;text-align:center;}
-    .triple-action__items{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;}
-    .triple-action__item{text-align:center;flex:0 1 150px;max-width:180px;}
-    .triple-action__icon{width:88px;height:88px;margin:0 auto 10px;}
-    .triple-action__icon img{width:100%;height:100%;object-fit:contain;}
-    .triple-action__text{font-size:15px;font-weight:600;color:var(--triple-green);}
-    @media (max-width:900px){.triple-action__item{flex:0 1 45%!important;max-width:45%!important;}.triple-action__items{gap:24px;}}
-</style>
+
 
 
 <!-- ✅ INGREDIENTS -->
 <section class="eps-scope eps-ingredients" aria-labelledby="eps-ingredients-title">
     <div class="eps-ingredients__wrap">
-        <h2 id="eps-ingredients-title" class="eps-ingredients__headline">
-            <span class="t-green">प्राकृतिक जडीबुटीहरूको शक्तिशाली</span> मिश्रणले पाइल्स, फिसर, फिस्टुला को घरमै समाधान
+        <h2 id="eps-ingredients-title" class="eps-ingredients__headline preeti-text">
+            <span class="t-green preeti-text">k|fs[lts h8La'6Lx¿sf] zlQmzfnL</span> ld>0fn] kfOn\;, lkm;/, lkm:6'nf sf] 3/d} ;dfwfg
         </h2>
         <div class="ingredient-container">
             <div class="ingredient-list"><ul id="ingredientList"></ul></div>
             <div class="ingredient-details">
                 <img id="ingredientImage" src="" alt="" width="800" height="600" loading="lazy">
                 <h3 id="ingredientName"></h3>
-                <p id="ingredientDescription"></p>
+                
             </div>
         </div>
     </div>
@@ -384,7 +483,7 @@
     @media (max-width:768px){.ingredient-container{flex-direction:column;border-radius:14px;}.ingredient-list{width:100%;max-height:none;border-right:none;border-bottom:1px solid #e5e7eb;padding:8px 6px 10px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}.ingredient-list::-webkit-scrollbar{display:none;}.ingredient-list ul{display:flex;gap:8px;padding:0 4px;}.ingredient-list li{margin-bottom:0;padding:8px 14px;border-radius:999px;white-space:nowrap;font-size:14px;text-align:center;background:#eef2f7;}.ingredient-list li.active{background:#0e9f4a;color:#fff;}.ingredient-details{width:100%;text-align:left;padding:14px 12px 18px;}.ingredient-details h3{font-size:18px;margin-bottom:6px;text-align:left;}.ingredient-details p{font-size:14px;text-align:left;}}
 </style>
 <script>
-    const ingredients=[{nameTH:"Haritaki",image:"Images/haritaki.png",desc:"पाचन शक्ति सन्तुलन गर्न र शरीरको सफाइमा मद्दत गर्ने महत्वपूर्ण आयुर्वेदिक जडीबुटी।"},{nameTH:"Suran",image:"Images/suran.png",desc:"आन्द्रा र पेटसम्बन्धी असहजता कम गर्न परम्परागत रूपमा प्रयोग हुने कन्द।"},{nameTH:"Haridara (Turmeric)",image:"Images/haridra.jpeg",desc:"सूजन र संक्रमण कम गर्न सहयोग गर्ने बलियो प्राकृतिक एन्टिअक्सिडेन्ट।"},{nameTH:"Lodhra",image:"Images/lodhra.jpg",desc:"रक्तस्राव कम गर्न र कोमल टिस्युहरू मजबुत बनाउन प्रयोग गरिने जडीबुटी।"},{nameTH:"Yastimadhu (Licorice)",image:"Images/Yastimadhu-Licorice.jpg",desc:"जलन र चिलाउने कम गर्न तथा छाला शान्त पार्न मद्दत गर्दछ।"},{nameTH:"Daruharidra",image:"Images/Daruharidra.jpg",desc:"छाला र रक्तशुद्धिका लागि प्रसिद्ध आयुर्वेदिक बोट।"},{nameTH:"Nirgundi",image:"Images/Nirgundi.jpg",desc:"सूजन, दुखाइ र संक्रमण नियन्त्रणका लागि प्रयोग हुने जडीबुटी।"},{nameTH:"Manjistha",image:"Images/Manjistha.png",desc:"रक्तशुद्धि र छाला सम्बन्धी समस्यामा उपयोगी मानिने बोट।"},{nameTH:"Lajjawati",image:"Images/Lajjawati-Jhar.png",desc:"संवेदनशील छालाको हेरचाह र सूजन घटाउन सहयोग गर्ने बोट।"},{nameTH:"Dhubo",image:"Images/dubo.jpg",desc:"रक्तस्राव रोक्न र घाउ निको पार्न लोक चिकित्सामा प्रयोग हुने घाँस।"},{nameTH:"Kustha",image:"Images/Kustha.png",desc:"त्वचा र शरीरको शुद्धिकरणमा प्रयोग हुने सुगन्धित जडीबुटी।"},{nameTH:"Mahanimba",image:"Images/Mahanimba.jpg",desc:"ब्याक्टेरिया र संक्रमण विरुद्ध लड्न मद्दत गर्ने कडुवा बोट (निम वर्ग)।"},{nameTH:"Nilakama",image:"Images/nilkama.jpg",desc:"परम्परागत रूपमा रक्तशुद्धि र छाला सन्तुलनका लागि प्रयोग हुने जडीबुटी।"},{nameTH:"Kutki",image:"Images/Kutki.jpg",desc:"कलेजो तथा मेटाबोलिज्म सन्तुलनमा सहयोग पुर्‍याउने औषधिजन्य बोट।"},{nameTH:"Jaipahal",image:"Images/Jaipahal.jpg",desc:"रक्तसञ्चार सुधार र तातोपन सन्तुलन राख्न मद्दत गर्ने मसला।"},{nameTH:"Padhnakh",image:"Images/padmank.jpg",desc:"आयुर्वेदिक मिश्रणमा सन्तुलन र शक्ति दिन थपिने सहयोगी जडीबुटी।"},{nameTH:"Baumika",image:"Images/Baumika.png",desc:"स्थानीय रूपले सूजन र दुखाइ कम गर्न प्रयोग हुने भुइँ-आधारित जडीबुटी।"},{nameTH:"Til oil (Sesame oil)",image:"Images/Til-oil-Sesame-oil.jpg",desc:"छाला नरम, पोषणयुक्त र लचिलो राख्न प्रयोग हुने आधार तेल।"},{nameTH:"Bee wax",image:"Images/Bee-wax.jpeg",desc:"छालामा सुरक्षात्मक तह बनाइ नमी जोगाउन मद्दत गर्ने प्राकृतिक मैन।"},{nameTH:"Nilo tooth",image:"Images/sweetpea-king-tut-2-1-scaled.jpg",desc:"परम्परागत हर्बल संयोजनमा सन्तुलन र अतिरिक्त आरामका लागि प्रयोग हुने घटक।"}];
+    const ingredients=[{nameTH:"Haritaki",image:"Images/haritaki.png"},{nameTH:"Suran",image:"Images/suran.png"},{nameTH:"Haridara (Turmeric)",image:"Images/haridra.jpeg"},{nameTH:"Lodhra",image:"Images/lodhra.jpg"},{nameTH:"Yastimadhu (Licorice)",image:"Images/Yastimadhu-Licorice.jpg"},{nameTH:"Daruharidra",image:"Images/Daruharidra.jpg"},{nameTH:"Nirgundi",image:"Images/Nirgundi.jpg"},{nameTH:"Manjistha",image:"Images/Manjistha.png"},{nameTH:"Lajjawati",image:"Images/Lajjawati-Jhar.png"},{nameTH:"Dhubo",image:"Images/dubo.jpg"},{nameTH:"Kustha",image:"Images/Kustha.png"},{nameTH:"Mahanimba",image:"Images/Mahanimba.jpg"},{nameTH:"Nilakama",image:"Images/nilkama.jpg"},{nameTH:"Kutki",image:"Images/Kutki.jpg"},{nameTH:"Jaipahal",image:"Images/Jaipahal.jpg"},{nameTH:"Padhnakh",image:"Images/padmank.jpg"},{nameTH:"Baumika",image:"Images/Baumika.png"},{nameTH:"Til oil (Sesame oil)",image:"Images/Til-oil-Sesame-oil.jpg"},{nameTH:"Bee wax",image:"Images/Bee-wax.jpeg"},{nameTH:"Nilo tooth",image:"Images/sweetpea-king-tut-2-1-scaled.jpg"}];
     const listEl=document.getElementById('ingredientList'),imgEl=document.getElementById('ingredientImage'),nameEl=document.getElementById('ingredientName'),descEl=document.getElementById('ingredientDescription');
     function renderList(){listEl.innerHTML='';ingredients.forEach((ing,i)=>{const li=document.createElement('li');li.id='ingredient'+(i+1);li.textContent=ing.nameTH;li.onclick=()=>changeContent(i);listEl.appendChild(li);});}
     function changeContent(index){const ing=ingredients[index];nameEl.textContent=ing.nameTH||'';if(ing.image){imgEl.src=ing.image;imgEl.style.display='block';}else{imgEl.style.display='none';}imgEl.alt=ing.nameTH||'जडीबुटी';descEl.textContent=ing.desc||'';Array.from(listEl.children).forEach(li=>li.classList.remove('active'));const t=document.getElementById('ingredient'+(index+1));if(t)t.classList.add('active');}
@@ -394,16 +493,16 @@
 
 <!-- ✅ TESTIMONIALS -->
 <section class="eps-reviews-section" aria-labelledby="eps-review-title">
-    <h2 id="eps-review-title" class="eps-review-title">Herbal Piles Spray प्रयोग गरेपछिका हाम्रा ग्राहकहरूका अनुभवहरू</h2>
-    <div class="eps-carousel" id="epsCarousel">
+    <h2 id="eps-review-title" class="eps-review-title">Herbal Piles Spray <span class="preeti-text"> k|of]u u/]kl5sf xfd|f u|fxsx¿sf cg'ejx¿</span></h2>
+    <div class="eps-carousel preeti-text" id="epsCarousel">
         <article class="eps-review-card">
             <figure class="eps-proof">
                 <span class="eps-proof-img" data-src="Images/59.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"पहिले त उठबस गर्न र सानोतिनो काम गर्दा पनि चस्स-चस्स घोचेर सहनै गाह्रो हुन्थ्यो। लगातार ३ दिन यो हर्बल पाइल्स स्प्रे लगाएँ, अहिले त बस्न, हिँडडुल गर्न र काम गर्न धेरै नै हलुका भएको छ।"</p>
+            <p class="eps-review-text">klxn] t p7a; ug{ / ;fgf]ltgf] sfd ub{f klg r:;-r:; 3f]r]/ ;xg} ufx|f] x'GYof]. nuftf/ # lbg of] xa{n kfOn\; :k|] nufPF, clxn] t a:g, lxF88'n ug{ / sfd ug{ w]/} g} xn'sf ePsf] 5.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">रामबहादुर थापा • काठमाडौँ</div>
+                <div class="eps-review-name">/fdaxfb'/ yfkf</div>
                 <div class="eps-stars">★★★★★</div>
             </div>
         </article>
@@ -413,9 +512,9 @@
                 <span class="eps-proof-img" data-src="Images/61.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"दिसा बस्दा जहिले पनि रगत आउँदा एकदमै डर लाग्थ्यो। ४-५ दिन जति यो स्प्रे प्रयोग गरेपछि रगत आउन ठप्पै भयो, सुन्निएको पनि धेरै घटेको छ।"</p>
+            <p class="eps-review-text">lb;f a:bf hlxn] klg /ut cfpFbf Psbd} 8/ nfUYof]. $-% lbg hlt of] :k|] k|of]u u/]kl5 /ut cfpg 7Kk} eof], ;'lGgPsf] klg w]/} 36]sf] 5.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">सुष्मा केसी • पोखरा</div>
+                <div class="eps-review-name">;'idf s];L </div>
                 <div class="eps-stars">★★★★★</div>
             </div>
         </article>
@@ -425,9 +524,9 @@
                 <span class="eps-proof-img" data-src="Images/63.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"क्रिम र औषधि त कति फेरें-फेरें, केही दिनलाई मात्रै ठिक हुन्थ्यो। यो हर्बल पाइल्स स्प्रे चाहिँ लगाउने बित्तिकै सुक्छ, पोल्दैन पनि अनि बिस्तारै त्यो मासुको गिर्खा पनि सानो हुँदै गएको महसुस भाछ।"</p>
+            <p class="eps-review-text">lqmd / cf}iflw t slt km]/]+-km]/]+, s]xL lbgnfO{ dfq} l7s x'GYof]. of] xa{n kfOn\; :k|] rflxF nufpg] lalQs} ;'S5, kf]n\b}g klg clg la:tf/} Tof] df;'sf] luv{f klg ;fgf] x'Fb} uPsf] dx;'; ef5.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">प्रकाश अधिकारी • भरतपुर</div>
+                <div class="eps-review-name">k|sfz clwsf/L</div>
                 <div class="eps-stars">★★★★★</div>
             </div>
         </article>
@@ -437,9 +536,9 @@
                 <span class="eps-proof-img" data-src="Images/60.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"सुत्केरी भएपछि पाइल्सले साह्रै सतायो। यो स्प्रे लगाउँदा एकदमै चिसो र आनन्द आउँछ। एक हप्तामै घाउ बिस्तारै सुक्दै गएको थाहा पाएँ।"</p>
+            <p class="eps-review-text">;'Ts]/L ePkl5 kfOn\;n] ;fx|} ;tfof]. of] :k|] nufpFbf Psbd} lr;f] / cfgGb cfpF5. Ps xKtfd} 3fp la:tf/} ;'Sb} uPsf] yfxf kfPF.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">रीता बस्नेत • भक्तपुर</div>
+                <div class="eps-review-name">/Ltf a:g]t </div>
                 <div class="eps-stars">★★★★★</div>
             </div>
         </article>
@@ -449,9 +548,9 @@
                 <span class="eps-proof-img" data-src="Images/64.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"दिनभरि बस चलाउँदा सिटमा बस्नै नसकिने गरी दुख्थ्यो। अहिले त लामो ड्युटीमा पनि त्यस्तो खप्नै नसक्ने दुखाइ छैन, एकदम मज्जाले काम गर्न सकेको छु।"</p>
+            <p class="eps-review-text">lbgel/ a; rnfpFbf l;6df a:g} g;lsg] u/L b'VYof]. clxn] t nfdf] 8\o'6Ldf klg To:tf] vKg} g;Sg] b'vfO 5}g, Psbd dHhfn] sfd ug{ ;s]sf] 5'.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">दिपेश गुरुङ • बुटवल</div>
+                <div class="eps-review-name">lbk]z u'?ª</div>
                 <div class="eps-stars">★★★★☆</div>
             </div>
         </article>
@@ -461,9 +560,9 @@
                 <span class="eps-proof-img" data-src="Images/62.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"पहिले मलद्वारको वरिपरि असाध्यै चिलाउने र पोल्ने गर्थ्यो। यो स्प्रेले गर्दा त्यहाँको छाला नरम र चिसो भइराख्छ, अनि सुन्निएको पनि मज्जाले घटेको छ।"</p>
+            <p class="eps-review-text">klxn] dnåf/sf] jl/kl/ c;fWo} lrnfpg] / kf]n\g] uYo{f]. of] :k|]n] ub{f ToxfFsf] 5fnf g/d / lr;f] eO/fV5, clg ;'lGgPsf] klg dHhfn] 36]sf] 5.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">मीना रिजाल • धरान</div>
+                <div class="eps-review-name">dLgf l/hfn </div>
                 <div class="eps-stars">★★★★★</div>
             </div>
         </article>
@@ -473,9 +572,9 @@
                 <span class="eps-proof-img" data-src="Images/71.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"स्प्रे भएको हुनाले हातले घाउमा छोएर क्रिम दल्नै परेन, अलि परैबाट सिधै छर्किदिए पुग्छ। छिट्टै सुक्ने रहेछ, भित्री लुगामा दाग पनि लाग्दैन।"</p>
+            <p class="eps-review-text">:k|] ePsf] x'gfn] xftn] 3fpdf 5f]P/ lqmd bn\g} k/]g, cln k/}af6 l;w} 5ls{lbP k'U5. l5§} ;'Sg] /x]5, leqL n'ufdf bfu klg nfUb}g.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">कुमार श्रेष्ठ • विराटनगर</div>
+                <div class="eps-review-name">s'df/ >]i7 </div>
                 <div class="eps-stars">★★★★☆</div>
             </div>
         </article>
@@ -485,9 +584,9 @@
                 <span class="eps-proof-img" data-src="Images/65.png"></span>
                 <span class="eps-proof-guard"></span>
             </figure>
-            <p class="eps-review-text">"यसको कडा गन्ध छैन, जडिबुटीको मन्द र फ्रेस बासना मात्रै आउँछ। यति राम्रो काम गरेपछि परिवारको लागि पनि भनेर मैले त एकैचोटि ३ बोतलको प्याकेज मगाइसकेको छु।"</p>
+            <p class="eps-review-text">o;sf] s8f uGw 5}g, hl8a'6Lsf] dGb / k|m]; af;gf dfq} cfpF5. olt /fd|f] sfd u/]kl5 kl/jf/sf] nflu klg eg]/ d}n] t Ps}rf]l6 # af]tnsf] Kofs]h dufO;s]sf] 5'.</p>
             <div class="eps-review-user">
-                <div class="eps-review-name">सन्तोष लामिछाने • नेपालगञ्ज</div>
+                <div class="eps-review-name">;Gtf]if nfld5fg] </div>
                 <div class="eps-stars">★★★★★</div>
             </div>
         </article>
@@ -536,20 +635,65 @@
 </script>
 
 
-<!-- ✅ FOOTER -->
-<footer class="easy-footer" role="contentinfo">
-    <style>
-        .easy-footer{width:100%;background:transparent;color:#222;text-align:center;padding:30px 16px 20px;font-family:'Arial',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-        .easy-footer p{margin:0;font-size:16px;font-weight:600;line-height:1.5;}
-        .easy-footer strong{color:#000;}
-        .easy-footer small{display:block;margin-top:6px;font-size:14px;color:#555;line-height:1.5;max-width:320px;}
-        @media (max-width:640px){.easy-footer{margin:0;width:90%;}.easy-footer p{font-size:15px;}.easy-footer small{font-size:13px;max-width:90%;}}
-    </style>
-    <p>© Copyright 2025 <strong>Herbal Piles Spray</strong>. All rights reserved.</p>
-    <small>A natural herbal spray designed to provide relief from piles, fissures, and fistula.</small>
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <nav class="footer__links">
+    <a href="#" data-policy="privacy-policy">Privacy Policy</a>
+    <a href="#" data-policy="shipping-policy">Shipping Policy</a>
+    <a href="#" data-policy="return-refund-policy">Return & Refund</a>
+    <a href="#" data-policy="terms-conditions">Terms & Conditions</a>
+    <a href="#" data-policy="medical-disclaimer">Disclaimer</a>
+  </nav>
+  <p class="footer__copy">© 2025 <strong>Herbal Relief Spray</strong>. All rights reserved.</p>
+  <p class="footer__tagline">A natural herbal spray for everyday comfort and relief from irritation.</p>
+  <p class="footer__tagline" style="max-width:520px;">This product is not intended to diagnose, treat, cure, or prevent any disease. It is meant for general wellness purposes only and should not replace professional medical advice or treatment.</p>
+  <p class="footer__support">Customer Support: <a href="https://wa.me/9779713309074?text=Hello!" target="_blank">WhatsApp 9713309074</a></p>
 </footer>
 
+<!-- ==================== POLICY POPUP ==================== -->
+<div id="policyOverlay" aria-hidden="true">
+  <div id="policyBox" role="dialog" aria-modal="true">
+    <button id="policyClose" aria-label="Close">×</button>
+    <h2 id="policyTitle"></h2>
+    <div id="policyBody"></div>
+    <button class="policy-ok" id="policyOk">ठीक छ / OK</button>
+  </div>
+</div>
 
+<template id="policyTemplates">
+  <div data-id="privacy-policy" data-title="Privacy Policy"><p>हामी ग्राहकको नाम, मोबाइल नम्बर, ठेगाना, प्रदेश र अर्डर विवरण केवल अर्डर पुष्टि, डेलिभरी, ग्राहक सहायता र सेवा सुधारका लागि प्रयोग गर्छौं।</p><ul><li>तपाईंको जानकारी अनावश्यक रूपमा तेस्रो पक्षलाई बेचिँदैन।</li><li>डेलिभरी पार्टनरलाई अर्डर पुर्‍याउन आवश्यक जानकारी मात्र दिइन्छ।</li><li>कुनै पनि privacy सम्बन्धी प्रश्नको लागि WhatsApp मा सम्पर्क गर्न सक्नुहुन्छ।</li></ul></div>
+  <div data-id="shipping-policy" data-title="Shipping / Delivery Policy"><p>हामी नेपालभर Cash on Delivery सहित डेलिभरी उपलब्ध गराउँछौं।</p><ul><li>Free Delivery All Over Nepal.</li><li>अर्डर गरेपछि confirmation call/message आउन सक्छ।</li><li>गलत वा अधुरो ठेगानाका कारण ढिलाइ हुन सक्छ।</li></ul></div>
+  <div data-id="return-refund-policy" data-title="Return & Refund Policy"><p>स्वास्थ्य/व्यक्तिगत प्रयोगको प्रकृति भएकाले खोलिएको वा प्रयोग गरिएको बोतल सामान्यतया return/refund हुँदैन।</p><ul><li>Delivery पाएको 24 घण्टाभित्र photo/video proof सहित जानकारी दिनुहोस्।</li><li>योग्य case मा replacement वा समाधान उपलब्ध गराइनेछ।</li></ul></div>
+  <div data-id="terms-conditions" data-title="Terms & Conditions"><p>यो वेबसाइट प्रयोग गर्दा र अर्डर राख्दा तपाईंले यहाँ उल्लेखित नियम, मूल्य, package details र policies स्वीकार गरेको मानिन्छ।</p><ul><li>मूल्य, discount र package offer समयअनुसार परिवर्तन हुन सक्छ।</li><li>Fake order, गलत नम्बर वा गलत ठेगानाका अर्डर cancel गर्न सकिन्छ।</li></ul></div>
+  <div data-id="medical-disclaimer" data-title="Product Disclaimer"><p>Herbal Relief Spray दैनिक anal comfort, irritation, burning sensation र असहजता कम गर्न बनाइएको herbal comfort product हो। यो doctor prescribed medicine को replacement होइन।</p><ul><li>गम्भीर दुखाइ, अत्यधिक bleeding, infection, pregnancy/post-surgery condition वा लामो समयको समस्या भएमा qualified health professional सँग सल्लाह लिनुहोस्।</li><li>बच्चाहरूको पहुँचबाट टाढा राख्नुहोस् र बाहिरी प्रयोगका लागि मात्र प्रयोग गर्नुहोस्।</li></ul></div>
+</template>
+<style>
+    /* ===== POLICY POPUP ===== */
+#policyOverlay{display:none;position:fixed;inset:0;z-index:100000;background:rgba(26,74,46,.4);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;}
+#policyOverlay.open{display:flex;}
+#policyBox{background:var(--c-white);border-radius:20px;padding:32px 28px 24px;width:100%;max-width:640px;max-height:86vh;overflow-y:auto;position:relative;box-shadow:var(--shadow-lg);animation:fadeInUp .2s var(--ease);}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+#policyClose{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;border:1px solid var(--c-border);background:var(--c-cream);font-size:18px;color:var(--c-muted);display:flex;align-items:center;justify-content:center;transition:background .2s;}
+#policyClose:hover{background:var(--c-cream-dark);}
+#policyTitle{font-family:var(--ff-head);font-size:24px;color:var(--c-forest);margin-bottom:16px;}
+#policyBody{font-size:14px;line-height:1.8;color:var(--c-muted);}
+#policyBody p{margin-bottom:10px;}
+#policyBody ul{padding-left:18px;}
+#policyBody li{margin-bottom:6px;}
+.policy-ok{display:block;margin:20px auto 0;padding:10px 28px;border-radius:999px;border:none;background:var(--c-forest);color:var(--c-cream);font-weight:700;font-size:14px;transition:background .2s;}
+.policy-ok:hover{background:var(--c-forest-mid);}
+
+/* ===== FOOTER ===== */
+footer{background:var(--c-forest);color:rgba(250,248,244,.7);padding:40px 24px 32px;text-align:center;font-family:var(--ff-body);}
+.footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-bottom:16px;}
+.footer__links a{color:var(--c-gold);font-size:13px;font-weight:600;text-decoration:none;transition:opacity .2s;}
+.footer__links a:hover{opacity:.7;}
+.footer__copy{font-size:13px;margin-bottom:8px;}
+.footer__copy strong{color:var(--c-cream);}
+.footer__tagline{font-size:12px;max-width:380px;margin:0 auto 12px;}
+.footer__support{font-size:13px;}
+.footer__support a{color:var(--c-gold);font-weight:700;}
+</style>
 <!-- ═══════════════════════════════════════════════════════
      ✅  ORDER POPUP MODAL
 ═══════════════════════════════════════════════════════ -->
@@ -606,21 +750,21 @@
                         <span class="popup-save-pill">बचत Rs 600</span>
                     </div>
                 </div>
-                <div class="popup-pkg-option selected" id="px2" data-bottles="2" data-price="3200" role="button" tabindex="0" aria-pressed="true">
+                <div class="popup-pkg-option selected" id="px2" data-bottles="2" data-price="2900" role="button" tabindex="0" aria-pressed="true">
                     <h3>X2 बोतल / 2 Bottles <span class="popup-size-tag">60ml</span></h3>
                     <div class="popup-price-row">
                         <span class="popup-price-old">Rs 5,000</span>
-                        <span class="popup-price-new">Rs 3,200</span>
-                        <span class="popup-save-pill">बचत Rs 1,800</span>
+                        <span class="popup-price-new">Rs 2,900</span>
+                        <span class="popup-save-pill">बचत Rs 2,100</span>
                     </div>
                     <div class="popup-badge">Best Choice</div>
                 </div>
-                <div class="popup-pkg-option" id="px3" data-bottles="3" data-price="4500" role="button" tabindex="0" aria-pressed="false">
+                <div class="popup-pkg-option" id="px3" data-bottles="3" data-price="3700" role="button" tabindex="0" aria-pressed="false">
                     <h3>X3 बोतल / 3 Bottles <span class="popup-size-tag">60ml</span></h3>
                     <div class="popup-price-row">
                         <span class="popup-price-old">Rs 7,500</span>
-                        <span class="popup-price-new">Rs 4,500</span>
-                        <span class="popup-save-pill">बचत Rs 3,000</span>
+                        <span class="popup-price-new">Rs 3,700</span>
+                        <span class="popup-save-pill">बचत Rs 3,800</span>
                     </div>
                 </div>
             </div>
@@ -826,7 +970,22 @@
         document.body.style.overflow = 'hidden';
         // Scroll popup to top whenever opened
         box.scrollTop = 0;
+
+            // Facebook Pixel events
+   const selectedPkg = document.querySelector('.popup-pkg-option.selected');
+    const checkoutValue = selectedPkg ? parseFloat(selectedPkg.getAttribute('data-price')) : 1900;
+    fbq('track', 'AddToCart', {
+        content_name: 'Herbal Piles Spray',
+        value: checkoutValue,
+        currency: 'NPR'
+    });
+    fbq('track', 'InitiateCheckout', {
+        content_name: 'Herbal Piles Spray',
+        value: checkoutValue,
+        currency: 'NPR'
+    });
     }
+    
     function closePopup() {
         overlay.classList.remove('open');
         document.body.style.overflow = '';
@@ -992,29 +1151,117 @@
             loaderLabel.innerHTML = 'अर्डर सफल भयो! 🎉<br/>Order Placed Successfully!';
             loaderSub.textContent = 'धन्यवाद! / Thank you!';
         }, 400);
-        setTimeout(() => { window.location.href = 'thankyou.html'; }, 1200);
+      const orderPrice = pendingData.get('total') || '1900';
+setTimeout(() => { window.location.href = 'thankyou.html?value=' + orderPrice; }, 1200);
     });
 </script>
 
-<!-- Meta Pixel Code -->
 <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '929404720002712');
-    fbq('track', 'PageView', 
-        );
+    /* ===== POLICY POPUP ===== */
+const polOverlay=document.getElementById('policyOverlay');
+let polTrigger=null;
+function openPolicy(id,trigger){
+  const tpl=document.getElementById('policyTemplates').content.querySelector(`[data-id="${id}"]`);
+  if(!tpl)return;
+  document.getElementById('policyTitle').textContent=tpl.dataset.title;
+  document.getElementById('policyBody').innerHTML=tpl.innerHTML;
+  polTrigger=trigger||null;
+  polOverlay.classList.add('open');polOverlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('policyClose').focus(),50);
+}
+function closePolicy(){
+  polOverlay.classList.remove('open');polOverlay.setAttribute('aria-hidden','true');
+  if(!document.getElementById('orderPopupOverlay').classList.contains('open'))document.body.style.overflow='';
+  if(polTrigger)polTrigger.focus();
+}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-policy]');if(a){e.preventDefault();openPolicy(a.dataset.policy,a);}});
+document.getElementById('policyClose').onclick=closePolicy;
+document.getElementById('policyOk').onclick=closePolicy;
+polOverlay.addEventListener('click',e=>{if(e.target===polOverlay)closePolicy();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&polOverlay.classList.contains('open'))closePolicy();});
+/**
+ * Preeti (legacy Nepali font) -> Unicode Devanagari, for text that got
+ * pasted in raw (still keyboard-coded in Preeti instead of converted).
+ *
+ * USAGE: wrap ONLY the raw Preeti fragment itself in
+ *   <span class="preeti-text">...</span>
+ * Never wrap a whole paragraph/heading that also contains English
+ * words, a brand/product name, or numbers/prices. Preeti reuses plain
+ * Latin letters AND plain digit keys as its keyboard layout (e.g. the
+ * "6" key types ट, not the numeral 6 — real Devanagari numerals come
+ * from Shift+digit), so the converter cannot tell "60ml" or "Spray"
+ * apart from actual Preeti-coded text and WILL corrupt it. Anything
+ * inside class="no-convert" is always skipped as an extra safeguard if
+ * you must nest English inside a converted block.
+ *
+ * The map below is the full Preeti keyboard layout (all consonants,
+ * matras, conjuncts, reph, digits) plus the standard reordering rules
+ * Preeti needs (matras typed before a consonant but rendered after it,
+ * reph placement, vowel-sign collisions, etc.) — not a partial guess.
+ */
+(function () {
+  const charMap = {
+    '÷':'/', 'v':'ख', 'r':'च', '"':'ू', '~':'ञ्', 'z':'श', 'ç':'ॐ', 'f':'ा',
+    'b':'द', 'n':'ल', 'j':'व', '×':'×', 'V':'ख्', 'R':'च्', 'ß':'द्म', '^':'६',
+    'Û':'!', 'Z':'श्', 'F':'ँ', 'B':'द्य', 'N':'ल्', 'Ë':'ङ्ग', 'J':'व्', '6':'ट',
+    '2':'द्द', '¿':'रू', '>':'श्र', ':':'स्', '§':'ट्ट', '&':'७', '£':'घ्', '•':'ड्ड',
+    '.':'।', '«':'्र', '*':'८', '„':'ध्र', 'w':'ध', 's':'क', 'g':'न', 'æ':'“',
+    'c':'अ', 'o':'य', 'k':'प', 'W':'ध्', 'Ö':'=', 'S':'क्', 'Ò':'¨', '_':')',
+    '[':'ृ', 'Ú':'’', 'G':'न्', 'ˆ':'फ्', 'C':'ऋ', 'O':'इ', 'Î':'ङ्ख', 'K':'प्',
+    '7':'ठ', '¶':'ठ्ठ', '3':'घ', '9':'ढ', '?':'रु', ';':'स', "'":'ु', '#':'३',
+    '¢':'द्घ', '/':'र', '+':'ं', 'ª':'ङ', 't':'त', 'p':'उ', '|':'्र', 'x':'ह',
+    'å':'द्व', 'd':'म', '`':'ञ', 'l':'ि', 'h':'ज', 'T':'त्', 'P':'ए', 'Ý':'ट्ठ',
+    '\\':'्', 'Ù':';', 'X':'ह्', 'Å':'हृ', 'D':'म्', '@':'२', 'Í':'ङ्क', 'L':'ी',
+    'H':'ज्', '4':'द्ध', '±':'+', '0':'ण्', '<':'?', '8':'ड', '¥':'र्‍', '$':'४',
+    '¡':'ज्ञ्', ',':',', '©':'र', '(':'९', '‘':'ॅ', 'u':'ग', 'q':'त्र', '}':'ै',
+    'y':'थ', 'e':'भ', 'a':'ब', 'i':'ष्', '‰':'झ्', 'U':'ग्', 'Q':'त्त', ']':'े',
+    '˜':'ऽ', 'Y':'थ्', 'Ø':'्य', 'E':'भ्', 'A':'ब्', 'M':'ः', 'Ì':'न्न', 'I':'क्ष्',
+    '5':'छ', '´':'झ', '1':'ज्ञ', '°':'ङ्ढ', '=':'.', 'Æ':'”', '‹':'ङ्घ', '%':'५',
+    '¤':'झ्', '!':'१', '-':'(', '›':'द्र', ')':'०', '…':'‘', 'Ü':'%'
+  };
+
+  // Applied in order after the character map — handles everything the
+  // map alone can't: matra reordering, reph ("{") placement, and a
+  // handful of two-key letter combinations (e.g. consonant + "m").
+  const postRules = [
+    ['्ा', ''], ['(त्र|त्त)([^उभप]+?)m', '$1m$2'], ['त्रm', 'क्र'], ['त्तm', 'क्त'],
+    ['([^उभप]+?)m', 'm$1'], ['उm', 'ऊ'], ['भm', 'झ'], ['पm', 'फ'], ['इ\\{', 'ई'],
+    ['ि((.्)*[^्])', '$1ि'], ['(.[ािीुूृेैोौंःँ]*?)\\{', '{$1'],
+    ['((.्)*)\\{', '{$1'], ['\\{', 'र्'],
+    ['([ाीुूृेैोौंःँ]+?)(्(.्)*[^्])', '$2$1'],
+    ['्([ाीुूृेैोौंःँ]+?)((.्)*[^्])', '्$2$1'],
+    ['([ंँ])([ािीुूृेैोौः]*)', '$2$1'],
+    ['ँँ', 'ँ'], ['ंं', 'ं'], ['ेे', 'े'], ['ैै', 'ै'], ['ुु', 'ु'], ['ूू', 'ू'],
+    ['^ः', ':'], ['टृ', 'ट्ट'], ['ेा', 'ाे'], ['ैा', 'ाै'],
+    ['अाे', 'ओ'], ['अाै', 'औ'], ['अा', 'आ'], ['एे', 'ऐ'], ['ाे', 'ो'], ['ाै', 'ौ']
+  ];
+
+  function convertText(text) {
+    let out = '';
+    for (const ch of text) out += (ch in charMap ? charMap[ch] : ch);
+    for (const [pattern, replacement] of postRules) {
+      out = out.replace(new RegExp(pattern, 'g'), replacement);
+    }
+    return out;
+  }
+
+  function walk(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      node.textContent = convertText(node.textContent);
+    } else if (node.nodeType === Node.ELEMENT_NODE && !node.classList.contains('no-convert')) {
+      node.childNodes.forEach(walk);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.preeti-text').forEach(function (el) {
+      walk(el);              // converts text nodes only — <strong>/<em>/<br> stay intact
+      el.classList.remove('preeti-text'); // run once, don't reprocess already-fixed text
+    });
+  });
+})();
 </script>
-<noscript><img height="1" width="1" style="display:none"
-               src="https://www.facebook.com/tr?id=929404720002712&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-<!-- Meta Pixel Code -->
 
 </body>
 </html>
