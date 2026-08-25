@@ -83,8 +83,8 @@ src="https://www.facebook.com/tr?id=1418740263433338&ev=PageView&noscript=1"
 
 <div id="promoBar1" class="promo-bar" role="region" aria-label="Promotion">
     <div class="promo-stack" id="promoBar1-stack">
-        <div class="promo-msg is-active">🎁 24% Discount</div>
-        <div class="promo-msg">🚚 Free Cash on Delivery all over Nepal</div>
+        <div class="promo-msg is-active">🎁 २४% छुट, आजको लागि मात्र</div>
+        <div class="promo-msg">🚚 नेपालभर फ्री डेलिभरी</div>
     </div>
 </div>
 <div id="promoBar1-offset"></div>
@@ -694,20 +694,6 @@ footer{background:var(--c-forest);color:rgba(250,248,244,.7);padding:40px 24px 3
                 <label for="p_address">ठेगाना / Address</label>
             </div>
 
-            <div class="popup-input-group">
-                <input list="p_provinces" id="p_province" name="province" placeholder=" " required autocomplete="address-level1" />
-                <label for="p_province">प्रदेश / Province</label>
-                <datalist id="p_provinces">
-                    <option value="कोशी प्रदेश / Koshi Province">
-                    <option value="मधेश प्रदेश / Madhesh Province">
-                    <option value="बाग्मती प्रदेश / Bagmati Province">
-                    <option value="गण्डकी प्रदेश / Gandaki Province">
-                    <option value="लुम्बिनी प्रदेश / Lumbini Province">
-                    <option value="कर्णाली प्रदेश / Karnali Province">
-                    <option value="सुदूरपश्चिम प्रदेश / Sudurpashchim Province">
-                </datalist>
-            </div>
-
             <!-- Package cards -->
             <div class="popup-package-options">
                 <div class="popup-pkg-option" id="px1" data-bottles="1" data-price="1900" role="button" tabindex="0" aria-pressed="false">
@@ -747,7 +733,6 @@ footer{background:var(--c-forest);color:rgba(250,248,244,.7);padding:40px 24px 3
                 <p><b>नाम / Name:</b> <span id="pc_name"></span></p>
                 <p><b>मोबाइल / Mobile:</b> <span id="pc_phone"></span></p>
                 <p><b>ठेगाना / Address:</b> <span id="pc_address"></span></p>
-                <p><b>प्रदेश / Province:</b> <span id="pc_province"></span></p>
                 <p><b>प्याकेज / Package:</b> <span id="pc_package"></span></p>
                 <p><b>जम्मा / Total:</b> Rs <span id="pc_price"></span></p>
             </div>
@@ -1033,7 +1018,6 @@ footer{background:var(--c-forest);color:rgba(250,248,244,.7);padding:40px 24px 3
         document.getElementById('pc_name').textContent     = pendingData.get('name')     || '';
         document.getElementById('pc_phone').textContent    = pendingData.get('phone')    || '';
         document.getElementById('pc_address').textContent  = pendingData.get('address')  || '';
-        document.getElementById('pc_province').textContent = pendingData.get('province') || '';
         document.getElementById('pc_package').textContent  = packageName;
         document.getElementById('pc_price').textContent    = fmt(Number(price));
 
