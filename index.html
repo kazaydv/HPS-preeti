@@ -1039,8 +1039,14 @@ footer{background:var(--c-forest);color:rgba(250,248,244,.7);padding:40px 24px 3
         closePopup();
         document.body.style.overflow = '';
 
+        // Unique order ID — saved with the order record and reused on the
+        // thank-you page so the browser Pixel and server-side Conversions
+        // API events can be matched/deduplicated as the same Purchase.
+        const orderId = 'ORD-' + Date.now();
+
         const params = new URLSearchParams();
         for (const [key, val] of pendingData.entries()) params.append(key, val);
+        params.append('order_id', orderId);
 
         // Show loading overlay
         const loadOverlay   = document.getElementById('popupLoadingOverlay');
@@ -1104,7 +1110,7 @@ footer{background:var(--c-forest);color:rgba(250,248,244,.7);padding:40px 24px 3
             loaderSub.textContent = 'धन्यवाद! / Thank you!';
         }, 400);
       const orderPrice = pendingData.get('total') || '1900';
-setTimeout(() => { window.location.href = 'thankyou.html?value=' + orderPrice; }, 1200);
+setTimeout(() => { window.location.href = 'thankyou.html?order_id=' + orderId + '&value=' + orderPrice; }, 1200);
     });
 </script>
 
