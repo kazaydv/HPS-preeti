@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ne">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +16,46 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1418740263433338');
-fbq('track', 'Purchase');
+
+// ── Order details, passed here from the order form's redirect URL ──
+// Your order form needs to redirect to:
+//   thank-you.html?order_id=ORD-1029&value=1600
+// (see instructions below the code)
+var _params = new URLSearchParams(window.location.search);
+var _orderId = _params.get('order_id');
+var _orderValue = _params.get('value');
+
+// CHANGE THIS to your real deployed Cloudflare Worker URL
+var WORKER_URL = 'https://fancy-hill-74c6.kazayadav.workers.dev/';
+
+if (_orderId && _orderValue) {
+  // Browser-side Purchase event — value/currency now included, eventID for dedup
+  fbq('track', 'Purchase', {
+    value: Number(_orderValue),
+    currency: 'NPR'
+  }, {
+    eventID: _orderId
+  });
+
+  // Server-side Purchase event via your Conversions API Worker
+  fetch(WORKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      order_id: _orderId,
+      value: Number(_orderValue),
+      currency: 'NPR',
+      event_source_url: window.location.origin + window.location.pathname
+    })
+  }).catch(function (err) {
+    console.error('Conversions API call failed:', err);
+  });
+} else {
+  // Fallback only — this fires if the order form hasn't been updated yet
+  // to pass order_id/value. Fix the redirect below so this branch stops running.
+  fbq('track', 'Purchase');
+  console.warn('Purchase fired without value/currency — order form is not passing order_id/value in the URL yet.');
+}
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1418740263433338&ev=PageView&noscript=1"
@@ -148,7 +186,8 @@ src="https://www.facebook.com/tr?id=1418740263433338&ev=PageView&noscript=1"
                 border-radius: 22px;
             }
 
-            .icon-box {
+
+.icon-box {
                 width: 64px;
                 height: 64px;
                 border-radius: 18px;
@@ -200,3 +239,5 @@ src="https://www.facebook.com/tr?id=1418740263433338&ev=PageView&noscript=1"
         </a>
     </div>
 </div>
+</body>
+</html>
