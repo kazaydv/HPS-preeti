@@ -1,11 +1,15 @@
+<!DOCTYPE html>
 <html lang="ne">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>अर्डर प्राप्त भयो – धन्यवाद</title>
-    <link rel="icon" type="image/png" href="/Images/favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>धन्यवाद | हिमबुटी</title>
+<link rel="icon" type="image/png" href="https://himbuti.store/Images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Meta Pixel Code -->
+<!-- Meta Pixel Code (same Pixel ID as the home page) -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -16,228 +20,229 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1418740263433338');
-
-// ── Order details, passed here from the order form's redirect URL ──
-// Your order form needs to redirect to:
-//   thank-you.html?order_id=ORD-1029&value=1600
-// (see instructions below the code)
-var _params = new URLSearchParams(window.location.search);
-var _orderId = _params.get('order_id');
-var _orderValue = _params.get('value');
-
-// CHANGE THIS to your real deployed Cloudflare Worker URL
-var WORKER_URL = 'https://fancy-hill-74c6.kazayadav.workers.dev/';
-
-if (_orderId && _orderValue) {
-  // Browser-side Purchase event — value/currency now included, eventID for dedup
-  fbq('track', 'Purchase', {
-    value: Number(_orderValue),
-    currency: 'NPR'
-  }, {
-    eventID: _orderId
-  });
-
-  // Server-side Purchase event via your Conversions API Worker
-  fetch(WORKER_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      order_id: _orderId,
-      value: Number(_orderValue),
-      currency: 'NPR',
-      event_source_url: window.location.origin + window.location.pathname
-    })
-  }).catch(function (err) {
-    console.error('Conversions API call failed:', err);
-  });
-} else {
-  // Fallback only — this fires if the order form hasn't been updated yet
-  // to pass order_id/value. Fix the redirect below so this branch stops running.
-  fbq('track', 'Purchase');
-  console.warn('Purchase fired without value/currency — order form is not passing order_id/value in the URL yet.');
-}
+fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1418740263433338&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
-    <style>
-        :root {
-            --bg-page: #e5eff7;
-            --green-main: #16a34a;
-            --green-dark: #166534;
-            --text-main: #111827;
-            --text-muted: #4b5563;
-            --card-radius: 28px;
-            --shadow-card: 0 18px 45px rgba(15, 23, 42, 0.16);
-        }
-
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--bg-page);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .wrap {
-            width: 100%;
-            max-width: 480px;
-            padding: 16px;
-        }
-
-        .card {
-            background: #ffffff;
-            padding: 28px 22px 24px;
-            border-radius: var(--card-radius);
-            text-align: center;
-            box-shadow: var(--shadow-card);
-        }
-
-        .icon-box {
-            width: 72px;
-            height: 72px;
-            border-radius: 22px;
-            background: var(--green-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-        }
-
-        .icon-box span {
-            font-size: 42px;
-            color: #ffffff;
-            line-height: 1;
-        }
-
-        h1 {
-            margin: 0 0 10px;
-            font-weight: 800;
-            color: var(--green-dark);
-            font-size: clamp(20px, 5vw, 26px);
-            line-height: 1.3;
-        }
-
-        p {
-            margin: 0 0 22px;
-            color: var(--text-muted);
-            font-size: clamp(14px, 3.5vw, 16px);
-            line-height: 1.7;
-        }
-
-        p strong {
-            color: var(--text-main);
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: 999px;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            margin-top: 10px;
-            transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
-        }
-
-        .btn-whatsapp {
-            background: var(--green-main);
-            color: #ffffff;
-            box-shadow: 0 10px 28px rgba(22, 163, 74, 0.40);
-        }
-
-        .btn-home {
-            background: #ffffff;
-            border: 1px solid #d1d5db;
-            color: var(--text-main);
-        }
-
-        .btn-whatsapp:hover {
-            background: #15803d;
-            transform: translateY(-1px);
-        }
-
-        .btn-home:hover {
-            background: #f9fafb;
-            transform: translateY(-1px);
-        }
-
-        .btn-whatsapp:active,
-        .btn-home:active {
-            transform: translateY(0);
-            box-shadow: none;
-        }
-
-        /* Small phones */
-        @media (max-width: 480px) {
-            .card {
-                padding: 24px 18px 20px;
-                border-radius: 22px;
-            }
-
-
-.icon-box {
-                width: 64px;
-                height: 64px;
-                border-radius: 18px;
-            }
-
-            .icon-box span {
-                font-size: 36px;
-            }
-        }
-
-        /* Larger screens */
-        @media (min-width: 768px) {
-            body {
-                padding: 32px 0;
-            }
-
-            .wrap {
-                max-width: 520px;
-            }
-
-            .card {
-                padding: 32px 28px 26px;
-            }
-        }
-    </style>
+<style>
+:root{
+  --paper:#FBF9F5; --ink:#2B2318; --ink-soft:#5F5744;
+  --green:#33553F; --green-deep:#254232; --amber:#B4791F;
+  --rust:#A23F2B; --line:#E5DECE; --card:#FFFFFF; --tint:#F1EDE1;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{overflow-x:hidden;}
+body{background:var(--paper);color:var(--ink);font-family:'Noto Sans Devanagari',sans-serif;line-height:1.85;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px 70px;}
+header.top{padding:24px 0 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
+.brand{font-family:'Noto Serif Devanagari',serif;font-weight:700;font-size:1rem;color:var(--green-deep);}
+.readtime{font-size:.8rem;color:var(--ink-soft);}
+h1{font-family:'Noto Serif Devanagari',serif;font-weight:700;font-size:1.85rem;line-height:1.4;}
+h3{font-family:'Noto Serif Devanagari',serif;font-weight:700;font-size:1.08rem;margin:0 0 10px;color:var(--ink);}
+.lede{font-size:1.05rem;color:var(--ink-soft);}
+.thanks{text-align:center;padding:34px 0 10px;}
+.thanks .tick{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;}
+.thanks h1{margin:0 0 8px;}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:6px;padding:18px 20px;margin:14px 0 22px;}
+.card p{margin-bottom:8px;font-size:.95rem;}
+.card p:last-child{margin-bottom:0;}
+.steps2{counter-reset:s2;list-style:none;margin:18px auto;max-width:420px;}
+.steps2 li{counter-increment:s2;position:relative;padding-left:36px;margin-bottom:16px;font-size:.94rem;}
+.steps2 li::before{content:counter(s2);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.78rem;display:flex;align-items:center;justify-content:center;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,66,50,.45);}70%{box-shadow:0 0 0 10px rgba(37,66,50,0);}100%{box-shadow:0 0 0 0 rgba(37,66,50,0);}}
+.cta{display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;text-align:center;background:var(--green-deep);color:#fff;font-weight:700;padding:14px 18px;border-radius:5px;text-decoration:none;font-size:1.05rem;margin-top:12px;animation:pulse 2.2s infinite;transition:transform .12s ease;}
+.cta:active{transform:scale(.97);}
+.cta:focus-visible{outline:3px solid var(--amber);outline-offset:3px;}
+.note{background:var(--tint);border-left:3px solid var(--rust);padding:14px 16px;border-radius:2px;font-size:.9rem;color:var(--ink-soft);margin:22px 0 20px;}
+.small-disc{font-size:.76rem;color:var(--ink-soft);line-height:1.6;margin:8px 0 12px;}
+@media (max-width:420px){
+  .wrap{padding:0 16px 40px;}
+  h1{font-size:1.6rem;}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important;}}
+</style>
 </head>
-
 <body>
 <div class="wrap">
-    <div class="card">
-        <div class="icon-box">
-            <span>✓</span>
-        </div>
+  <header class="top"><div class="brand">🌿 <span class="preeti-text">:jf:Yo s'/f</span></div><div class="readtime preeti-text">lxda'6L</div></header>
 
-        <h1>अर्डर सफलतापूर्वक सबमिट भयो</h1>
+  <div class="thanks">
+    <div class="tick">✓</div>
+    <h1 class="preeti-text">wGojfbÛ</h1>
+    <p class="lede preeti-text">tkfO{+sf] c8{/ xfdLsxfF k'lu;Sof]. xfdL l5§} kmf]g u5f}{+.</p>
+  </div>
 
-        <p>
-            हजुरको अर्डर प्राप्त भइसकेको छ।<br>
-            हाम्रो टिमबाट चाँडै <strong>कल आउनेछ</strong>, कृपया फोन
-            <strong>उठाइदिनुहोला</strong>।
-        </p>
+  <!-- Order summary: filled from ?order_id=&value=&package= sent by the home page.
+       Hidden on a direct visit with no params. -->
+  <div class="card" id="orderSummary" style="display:none;">
+    <h3 class="preeti-text">tkfO{+sf] c8{/</h3>
+    <p id="orderIdRow"><b><span class="preeti-text">c8{/ gDa/</span>:</b> <span id="orderId"></span></p>
+    <p id="orderPackageRow"><b><span class="preeti-text">Kofs]h</span>:</b> <span id="orderPackage"></span></p>
+    <p id="orderValueRow"><b><span class="preeti-text">hDdf -;fdfg kfPkl5 e'StfgL_</span>:</b> <span class="preeti-text">?=</span> <span id="orderValue"></span></p>
+  </div>
 
-        <a href="https://wa.me/9779713309074" target="_blank" class="btn btn-whatsapp">
-            WhatsApp मा कुरा गर्नुहोस्
-        </a>
+  <ol class="steps2">
+    <li class="preeti-text"><b>xfdL kmf]g u5f}{+</b> / c8{/ kSsf u5f}{+. s[kof kmf]g glhs} /fVg'xf]:.</li>
+    <li class="preeti-text"><b>;fdfg 3/d} k'U5.</b> g]kfne/ 8]lne/L lgMz'Ns.</li>
+    <li class="preeti-text"><b>;fdfg kfPkl5 dft| e'StfgL</b> ug'{xf]:.</li>
+  </ol>
 
-        <a href="https://himbuti.store" class="btn btn-home">
-            होमपेजमा फर्कनुहोस्
-        </a>
-    </div>
+  <a class="cta" href="https://wa.me/9779713309074?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%2C%20%E0%A4%AE%E0%A5%88%E0%A4%B2%E0%A5%87%20Himbuti%20%E0%A4%B9%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B2%20%E0%A4%B8%E0%A5%8D%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%87%20%E0%A4%85%E0%A4%B0%E0%A5%8D%E0%A4%A1%E0%A4%B0%20%E0%A4%97%E0%A4%B0%E0%A5%87%E0%A4%95%E0%A5%8B%20%E0%A4%9B%E0%A5%81%E0%A5%A4" target="_blank" rel="noopener"><span class="preeti-text">x\jf6\;Pkdf k|Zg ;f]Wg'xf]:</span></a>
+
+  <div class="note preeti-text">/ut aUg], kLk cfpg], Hj/f] cfpg] jf b'vfO a9\g] eP :k|] xf]Og, 8fS6/nfO{ e]6\g'xf]:.</div>
+  <p class="small-disc preeti-text">of] pTkfbgn] s'g} /f]u lgbfg, pkrf/ jf lgsf] kfg]{ bfaL ub}{g.</p>
 </div>
+
+<script>
+/**
+ * Preeti (legacy Nepali font) -> Unicode Devanagari, for text that got
+ * pasted in raw (still keyboard-coded in Preeti instead of converted).
+ *
+ * USAGE: wrap ONLY the raw Preeti fragment itself in
+ *   <span class="preeti-text">...</span>
+ * Never wrap a whole paragraph/heading that also contains English
+ * words, a brand/product name, or numbers/prices. Preeti reuses plain
+ * Latin letters AND plain digit keys as its keyboard layout (e.g. the
+ * "6" key types ट, not the numeral 6 — real Devanagari numerals come
+ * from Shift+digit), so the converter cannot tell "60ml" or "Spray"
+ * apart from actual Preeti-coded text and WILL corrupt it. Anything
+ * inside class="no-convert" is always skipped as an extra safeguard if
+ * you must nest English inside a converted block.
+ *
+ * The map below is the full Preeti keyboard layout (all consonants,
+ * matras, conjuncts, reph, digits) plus the standard reordering rules
+ * Preeti needs (matras typed before a consonant but rendered after it,
+ * reph placement, vowel-sign collisions, etc.) — not a partial guess.
+ */
+(function () {
+  const charMap = {
+    '÷':'/', 'v':'ख', 'r':'च', '"':'ू', '~':'ञ्', 'z':'श', 'ç':'ॐ', 'f':'ा',
+    'b':'द', 'n':'ल', 'j':'व', '×':'×', 'V':'ख्', 'R':'च्', 'ß':'द्म', '^':'६',
+    'Û':'!', 'Z':'श्', 'F':'ँ', 'B':'द्य', 'N':'ल्', 'Ë':'ङ्ग', 'J':'व्', '6':'ट',
+    '2':'द्द', '¿':'रू', '>':'श्र', ':':'स्', '§':'ट्ट', '&':'७', '£':'घ्', '•':'ड्ड',
+    '.':'।', '«':'्र', '*':'८', '„':'ध्र', 'w':'ध', 's':'क', 'g':'न', 'æ':'“',
+    'c':'अ', 'o':'य', 'k':'प', 'W':'ध्', 'Ö':'=', 'S':'क्', 'Ò':'¨', '_':')',
+    '[':'ृ', 'Ú':'’', 'G':'न्', 'ˆ':'फ्', 'C':'ऋ', 'O':'इ', 'Î':'ङ्ख', 'K':'प्',
+    '7':'ठ', '¶':'ठ्ठ', '3':'घ', '9':'ढ', '?':'रु', ';':'स', "'":'ु', '#':'३',
+    '¢':'द्घ', '/':'र', '+':'ं', 'ª':'ङ', 't':'त', 'p':'उ', '|':'्र', 'x':'ह',
+    'å':'द्व', 'd':'म', '`':'ञ', 'l':'ि', 'h':'ज', 'T':'त्', 'P':'ए', 'Ý':'ट्ठ',
+    '\\':'्', 'Ù':';', 'X':'ह्', 'Å':'हृ', 'D':'म्', '@':'२', 'Í':'ङ्क', 'L':'ी',
+    'H':'ज्', '4':'द्ध', '±':'+', '0':'ण्', '<':'?', '8':'ड', '¥':'र्‍', '$':'४',
+    '¡':'ज्ञ्', ',':',', '©':'र', '(':'९', '‘':'ॅ', 'u':'ग', 'q':'त्र', '}':'ै',
+    'y':'थ', 'e':'भ', 'a':'ब', 'i':'ष्', '‰':'झ्', 'U':'ग्', 'Q':'त्त', ']':'े',
+    '˜':'ऽ', 'Y':'थ्', 'Ø':'्य', 'E':'भ्', 'A':'ब्', 'M':'ः', 'Ì':'न्न', 'I':'क्ष्',
+    '5':'छ', '´':'झ', '1':'ज्ञ', '°':'ङ्ढ', '=':'.', 'Æ':'”', '‹':'ङ्घ', '%':'५',
+    '¤':'झ्', '!':'१', '-':'(', '›':'द्र', ')':'०', '…':'‘', 'Ü':'%'
+  };
+
+  // Applied in order after the character map — handles everything the
+  // map alone can't: matra reordering, reph ("{") placement, and a
+  // handful of two-key letter combinations (e.g. consonant + "m").
+  const postRules = [
+    ['्ा', ''], ['(त्र|त्त)([^उभप]+?)m', '$1m$2'], ['त्रm', 'क्र'], ['त्तm', 'क्त'],
+    ['([^उभप]+?)m', 'm$1'], ['उm', 'ऊ'], ['भm', 'झ'], ['पm', 'फ'], ['इ\\{', 'ई'],
+    ['ि((.्)*[^्])', '$1ि'], ['(.[ािीुूृेैोौंःँ]*?)\\{', '{$1'],
+    ['((.्)*)\\{', '{$1'], ['\\{', 'र्'],
+    ['([ाीुूृेैोौंःँ]+?)(्(.्)*[^्])', '$2$1'],
+    ['्([ाीुूृेैोौंःँ]+?)((.्)*[^्])', '्$2$1'],
+    ['([ंँ])([ािीुूृेैोौः]*)', '$2$1'],
+    ['ँँ', 'ँ'], ['ंं', 'ं'], ['ेे', 'े'], ['ैै', 'ै'], ['ुु', 'ु'], ['ूू', 'ू'],
+    ['^ः', ':'], ['टृ', 'ट्ट'], ['ेा', 'ाे'], ['ैा', 'ाै'],
+    ['अाे', 'ओ'], ['अाै', 'औ'], ['अा', 'आ'], ['एे', 'ऐ'], ['ाे', 'ो'], ['ाै', 'ौ']
+  ];
+
+  function convertText(text) {
+    let out = '';
+    for (const ch of text) out += (ch in charMap ? charMap[ch] : ch);
+    for (const [pattern, replacement] of postRules) {
+      out = out.replace(new RegExp(pattern, 'g'), replacement);
+    }
+    return out;
+  }
+
+  function walk(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      node.textContent = convertText(node.textContent);
+    } else if (node.nodeType === Node.ELEMENT_NODE && !node.classList.contains('no-convert')) {
+      // A .preeti-text nested inside another one is converted here, so mark
+      // it done; converting Unicode a second time scrambles the ि matra.
+      node.classList.remove('preeti-text');
+      node.childNodes.forEach(walk);
+    }
+  }
+
+  // Exposed so text added later by JavaScript (policy popup, ingredient
+  // list, order popup messages) can also be written in Preeti.
+  window.preeti = convertText;
+  window.preetiConvertIn = function (root) { walk(root); };
+  // Turns plain digits into Preeti digit keys (1 -> !, 2 -> @ ...), so
+  // numbers written by JavaScript can go through window.preeti too.
+  window.preetiDigits = function (s) {
+    return String(s).replace(/[0-9]/g, function (d) { return ')!@#$%^&*('.charAt(+d); });
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.preeti-text').forEach(function (el) {
+      if (!el.classList.contains('preeti-text')) return; // already done via its parent
+      walk(el);              // converts text nodes only — <strong>/<em>/<br> stay intact
+      el.classList.remove('preeti-text'); // run once, don't reprocess already-fixed text
+    });
+  });
+})();
+</script>
+
+<!-- Runs AFTER the page content exists, so the order card can be filled,
+     and AFTER the Pixel base code, so fbq is defined. -->
+<script>
+(function () {
+  var params   = new URLSearchParams(window.location.search);
+  var orderId  = (params.get('order_id') || '').trim();
+  var value    = parseFloat(params.get('value') || params.get('price') || params.get('total') || '');
+  var hasValue = isFinite(value) && value > 0;
+  var pkg      = (params.get('package') || params.get('pack') || '').trim();
+
+  // Direct visit (no order params): show nothing, fire nothing.
+  if (!orderId && !hasValue && !pkg) return;
+
+  // ── Order summary card ─────────────────────────────
+  var card = document.getElementById('orderSummary');
+  if (card) card.style.display = 'block';
+  function setRow(rowId, elId, text) {
+    var row = document.getElementById(rowId), el = document.getElementById(elId);
+    if (!row || !el) return;
+    if (text) el.textContent = text; else row.style.display = 'none';
+  }
+  setRow('orderIdRow', 'orderId', orderId);
+  // Show the package in Nepali (Preeti), e.g. "X2 – 60ml" -> २ बोतल – ६० एमएल.
+  // The pixel below still receives the original pkg text.
+  var pkgNum = pkg.match(/^X(\d+)/i);
+  setRow('orderPackageRow', 'orderPackage', pkgNum ? window.preeti(window.preetiDigits(pkgNum[1]) + " af]tn – ^) PdPn") : pkg);
+  setRow('orderValueRow', 'orderValue', hasValue ? window.preeti(window.preetiDigits(new Intl.NumberFormat('en-IN').format(value))) : '');
+
+  // ── PURCHASE event (fires once per order) ──────────
+  if (!hasValue || typeof fbq !== 'function') return;
+
+  // Don't fire again if the customer refreshes this page.
+  var firedKey = 'hb_purchase_' + (orderId || value);
+  try { if (sessionStorage.getItem(firedKey)) return; } catch (e) {}
+
+  try {
+    var data = {
+      value: value,
+      currency: 'NPR',
+      content_name: 'Herbal Piles Spray',
+      content_category: pkg,
+      content_type: 'product'
+    };
+    if (orderId) fbq('track', 'Purchase', data, { eventID: orderId });
+    else         fbq('track', 'Purchase', data);
+    try { sessionStorage.setItem(firedKey, '1'); } catch (e) {}
+  } catch (e) { /* a Pixel error must never break the thank-you page */ }
+})();
+</script>
 </body>
 </html>
