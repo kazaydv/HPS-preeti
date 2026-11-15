@@ -19,11 +19,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1418740263433338');
+fbq('init', '1177417671621985');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1418740263433338&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=1177417671621985&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
@@ -231,12 +231,16 @@ h3{font-family:'Noto Serif Devanagari',serif;font-weight:700;font-size:1.08rem;m
   try { if (sessionStorage.getItem(firedKey)) return; } catch (e) {}
 
   try {
+    var qty = pkgNum ? parseInt(pkgNum[1], 10) : 1;
     var data = {
       value: value,
       currency: 'NPR',
       content_name: 'Herbal Piles Spray',
       content_category: pkg,
-      content_type: 'product'
+      content_type: 'product',
+      content_ids: ['HPS-60ML'],
+      contents: [{id: 'HPS-60ML', quantity: qty, item_price: value / qty}],
+      num_items: qty
     };
     if (orderId) fbq('track', 'Purchase', data, { eventID: orderId });
     else         fbq('track', 'Purchase', data);
