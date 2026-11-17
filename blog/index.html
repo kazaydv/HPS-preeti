@@ -798,13 +798,14 @@ section[id],h2[id]{scroll-margin-top:12px}
 
   /* ---- UTM / click IDs: keep first-touch values for this visit ---- */
   var qs = new URLSearchParams(location.search);
-  var KEYS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"];
+  var KEYS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid","ad_name"];
   var attrib = {};
   KEYS.forEach(function(k){
     var v = qs.get(k);
     try{ if(v) sessionStorage.setItem("hb_"+k, v); else v = sessionStorage.getItem("hb_"+k); }catch(e){}
     if(v) attrib[k] = v;
   });
+  if(!attrib.ad_name && attrib.utm_content) attrib.ad_name = attrib.utm_content;
 
   /* ---- Form elements ---- */
   var form = document.getElementById("orderForm");
