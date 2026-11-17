@@ -47,7 +47,7 @@ h1{margin:0 0 8px;font-size:26px;line-height:1.3}
 .help p{margin:0 0 12px}
 .wa{display:block;background:#25D366;color:#fff;text-decoration:none;font-weight:800;padding:14px;border-radius:12px}
 footer{padding:20px;text-align:center;font-size:13px;color:#55605A}
-.lat{font-family:Mukta,system-ui,sans-serif!important}.ctl,.phone input,textarea.ctl{font-family:Mukta,system-ui,sans-serif!important}
+.lat{font-family:Mukta,system-ui,sans-serif!important}#oid{font-family:Mukta,system-ui,sans-serif!important}.ctl,.phone input,textarea.ctl{font-family:Mukta,system-ui,sans-serif!important}
 
 @media (max-width:480px){
   body{font-size:18px}
@@ -99,7 +99,7 @@ footer{padding:20px;text-align:center;font-size:13px;color:#55605A}
   var pack = qs.get("pack") || "";
 
   if(orderId) document.getElementById("oid").textContent = orderId;
-  if(pack) document.getElementById("opack").innerHTML = toNe(pack) + " af]tn (<span class='lat'>60 ml</span>)";
+  if(pack) document.getElementById("opack").innerHTML = toNe(pack) + " af]tn <span class='lat'>(60 ml)</span>";
   if(value) document.getElementById("oval").textContent = "? " + toNe(value);
   if(orderId){
     document.getElementById("waBtn").href = "https://wa.me/9779713309074?text=" +
