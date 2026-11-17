@@ -1189,6 +1189,9 @@ footer{padding:36px 20px 48px}
         // column blank. Send both so the sheet and the thank-you page
         // (which reads 'total') both get the number.
         pendingData.set('price', price);
+        // UTM params from the URL, so the sheet's utm_* columns fill in.
+        var _qs = new URLSearchParams(location.search);
+        ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){ pendingData.set(k, _qs.get(k) || ''); });
 
         document.getElementById('pc_name').textContent     = pendingData.get('name')     || '';
         document.getElementById('pc_phone').textContent    = pendingData.get('phone')    || '';
