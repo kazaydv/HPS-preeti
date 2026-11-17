@@ -1192,6 +1192,7 @@ footer{padding:36px 20px 48px}
         // UTM params from the URL, so the sheet's utm_* columns fill in.
         var _qs = new URLSearchParams(location.search);
         ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){ pendingData.set(k, _qs.get(k) || ''); });
+        pendingData.set('ad_name', _qs.get('ad_name') || _qs.get('utm_content') || '');
 
         document.getElementById('pc_name').textContent     = pendingData.get('name')     || '';
         document.getElementById('pc_phone').textContent    = pendingData.get('phone')    || '';
