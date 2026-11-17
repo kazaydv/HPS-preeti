@@ -786,7 +786,7 @@ section[id],h2[id]{scroll-margin-top:12px}
 <script>
 (function(){
   "use strict";
-  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxF7fRy14OLUpD9KC317Dio4Z8BZFViaY84Wi5kGEUO3s24Sw5Y_qQddJOqeCCgAFgQlA/exec";
+  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxICfzFQ97s861oiIa_-N9IaI8HJJZ0hZCogODRFZVvq9OPOn4YpYIrRQPZH94dUlBD/exec";
   var PAGE_ID = "blog-v4";
   var WA_NUMBER = "9779713309074";
 
@@ -885,6 +885,7 @@ section[id],h2[id]{scroll-margin-top:12px}
     data.append("address", address);
     data.append("package", p.getAttribute("data-label"));
     data.append("total", price);
+    data.append("price", price);
     data.append("order_id", orderId);
     data.append("page", PAGE_ID);
     data.append("page_url", location.href.split("#")[0]);
@@ -898,12 +899,9 @@ section[id],h2[id]{scroll-margin-top:12px}
     try{
       var ctrl = ("AbortController" in window) ? new AbortController() : null;
       var t = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
-      var res = await fetch(APPS_SCRIPT_URL, {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:data.toString(), signal: ctrl ? ctrl.signal : undefined});
+      await fetch(APPS_SCRIPT_URL, {method:"POST", mode:"no-cors", keepalive:true, headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:data.toString(), signal: ctrl ? ctrl.signal : undefined});
       if(t) clearTimeout(t);
-      if(res.ok){
-        var json = await res.json().catch(function(){ return null; });
-        if(json && json.status === "success") ok = true; else if(json && json.message) msg = json.message;
-      } else { msg = ";e{/df ;d:of " + res.status + "। s[kof km]l/ k|of; ug{'xf];\\।"; }
+      ok = true;
     }catch(err){ msg = "OG6/g]6 h8fgdf ;d:of eof]। s[kof km]l/ k|of; ug{'xf];\\।"; }
 
     if(ok){
