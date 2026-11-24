@@ -784,7 +784,7 @@ footer{padding:36px 20px 48px}
   var cards=g.querySelectorAll('.eps-symptom');
   if(cards.length<2)return;
   var idx=0,timer=null;
-  function go(i){idx=(i+cards.length)%cards.length;cards[idx].scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'});}
+  function go(i){idx=(i+cards.length)%cards.length;g.scrollTo({left:cards[idx].offsetLeft-cards[0].offsetLeft,behavior:'smooth'});}
   function start(){stop();timer=setInterval(function(){go(idx+1);},4000);}
   function stop(){if(timer){clearInterval(timer);timer=null;}}
   g.addEventListener('scroll',function(){
